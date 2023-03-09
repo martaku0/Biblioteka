@@ -1,0 +1,39 @@
+<ng-container>
+    <p [class.data]="true">{{ date_now | date:'dd-MM-YYYY HH:mm:ss' }}</p>
+    <div [class.buttons]="true">
+        <button type="button" name="rok" *ngFor="let l of lata[name!].text.split(',')" (click)="loadData(l)">{{l}}</button>
+        <button type="button" name="rok" (click)="loadData('wszystkie')">wszystkie</button>
+    </div>
+    <table *ngIf="isLoad">
+        <tr>
+            <th>strona tytułowa</th>
+            <th>plik</th>
+            <th>pismo</th>
+            <th>darczyńcy</th>
+        </tr>
+        <tr *ngFor="let magazine of dane">
+            <ng-container *ngIf="magazine.attr.brak == undefined && (magazine.attr.rok == year || year == 'wszystkie')">
+                <td>
+                    <a [href]="imgPath + name + '/' + magazine.miniaturka.text"><img [src]="imgPath + name + '/' + magazine.miniaturka.text" alt="miniaturka"></a>
+                </td>
+                <td>
+                    format: {{magazine.format.text}} <br> stron: {{magazine.stron.text}} <br> plik: <a [href]="imgPath + name + '/' + magazine.plik.text">tutaj</a>
+                </td>
+                <td>
+                    nazwa: {{magazine.nazwa.text}} <br> numer: {{magazine.numer.text}} <br> wydawca: {{magazine.wydawca.text}}
+                </td>
+                <td>
+                    skan: {{magazine.skan.text}} <br> przetworzenie: {{magazine.przetworzenie.text}} <br> podesłał: {{magazine.podeslal.text}}
+                </td>
+            </ng-container>
+            <ng-container *ngIf="magazine.attr.brak != undefined && (magazine.attr.rok == year || year == 'wszystkie')">
+                <td>brak</td>
+                <td>brak</td>
+                <td>
+                    brak: {{magazine.attr.brak}}
+                </td>
+                <td>brak</td>
+            </ng-container>
+        </tr>
+    </table>
+</ng-container>

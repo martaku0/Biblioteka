@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+p {
+    margin-top: 10px;
+}
+
+input {
+    margin: 0 5px;
+}
+
+p.data {
+    text-align: right;
+    justify-self: right;
+}
+
+.box {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 550px;
+    width: 420px;
+    align-items: center;
+    gap: 10px;
+}
+
+.czasopismo {
+    display: flex;
+    width: 200px;
+    height: 80px;
+}
+
+.czasopismo img {
+    align-self: flex-end;
+    justify-self: center;
+}
+
+.back-button {
+    text-align: center;
+    padding: 0 20px;
+    font-size: 20px;
+    color: black;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.czasopismo img:hover,
+.back-button:hover {
+    cursor: pointer;
+    border: 3px solid black;
+}

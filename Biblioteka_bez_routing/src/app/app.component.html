@@ -1,0 +1,20 @@
+<ng-container *ngIf="!biblio">
+    <p [class.data]="true">{{ date_now | date:'dd-MM-YYYY HH:mm:ss' }}</p>
+    <label *ngIf="zarobki != 666.666">Wpisz zarobki z poprzedniego roku: <input type="password" name="zarobki" (keypress)="check($event)" [(ngModel)]="zarobki"> EUR</label>
+    <ng-container [ngSwitch]="zarobki" *ngIf="zarobki && zarobki >= 0">
+        <ng-container *ngSwitchCase="666.666">
+            <p>Idealne zarobki by zrobić dalszą część zadania :)</p>
+            <div [class.box]="true">
+                <div *ngFor="let im of images | keyvalue" [class.czasopismo]="true">
+                    <a (click)="openLib(im.key)"><img *ngIf="im.key != 'text'" src={{getImage(im.key)}} alt="image" #imag></a>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+            <p>I tak widzimy, że Twoje zarobki to: {{zarobki | currency:'EUR':'symbol-narrow':'1.0-3'}}</p>
+        </ng-container>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="biblio">
+    <app-biblio [name]="imgName" [data]="data1"></app-biblio>
+</ng-container>
